@@ -49,7 +49,6 @@ class AdminMenu
                     'order' => 2,
                 ]);
             }
-
             // Incomes
             if ($user->can(['read-incomes-invoices', 'read-incomes-revenues', 'read-incomes-customers'])) {
                 $menu->dropdown(trans_choice('general.incomes', 2), function ($sub) use($user, $attr) {
@@ -201,6 +200,16 @@ class AdminMenu
                     'order' => 8,
                 ]);
             }
+
+            //test
+//            if ($user->can('read-common-area')) {
+                $menu->add([
+                    'url' => 'common/area',
+                    'title' => trans_choice('general.testing', 2),
+                    'icon' => 'fa fa-gears',
+                    'order' => 9,
+                ]);
+//            }
 
             // Fire the event to extend the menu
             event(new AdminMenuCreated($menu));

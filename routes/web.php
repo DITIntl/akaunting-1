@@ -37,12 +37,13 @@ Route::group(['middleware' => 'language'], function () {
 
         Route::group(['middleware' => ['adminmenu', 'permission:read-admin-panel']], function () {
             Route::get('/', 'Common\Dashboard@index');
-
             Route::group(['prefix' => 'uploads'], function () {
                 Route::delete('{id}', 'Common\Uploads@destroy');
             });
 
             Route::group(['prefix' => 'common'], function () {
+                Route::get('area', 'Common\Area@index')->name('area');
+                Route::resource('area', 'Common\Area');
                 Route::get('companies/{company}/set', 'Common\Companies@set')->name('companies.switch');
                 Route::get('companies/{company}/enable', 'Common\Companies@enable')->name('companies.enable');
                 Route::get('companies/{company}/disable', 'Common\Companies@disable')->name('companies.disable');
@@ -188,6 +189,10 @@ Route::group(['middleware' => 'language'], function () {
                 Route::get('{alias}/enable', 'Modules\Item@enable');
                 Route::get('{alias}/disable', 'Modules\Item@disable');
                 Route::get('{alias}', 'Modules\Item@show');
+            });
+            //test
+            Route::group(['prefix' => 'test'], function () {
+                Route::get('');
             });
 
             Route::group(['prefix' => 'install'], function () {

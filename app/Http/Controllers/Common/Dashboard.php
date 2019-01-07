@@ -37,7 +37,6 @@ class Dashboard extends Controller
     {
         $this->today = Date::today();
         $this->financial_start = $financial_start = Date::parse(setting('general.financial_start'))->format('Y-m-d');
-
         list($total_incomes, $total_expenses, $total_profit) = $this->getTotals();
 
         $cashflow = $this->getCashFlow();
@@ -50,6 +49,8 @@ class Dashboard extends Controller
 
         $latest_expenses = $this->getLatestExpenses();
 
+        $articles = $this->getArticles();
+
         return view('common.dashboard.index', compact(
             'total_incomes',
             'total_expenses',
@@ -60,7 +61,8 @@ class Dashboard extends Controller
             'accounts',
             'latest_incomes',
             'latest_expenses',
-            'financial_start'
+            'financial_start',
+            'articles'
         ));
     }
 
@@ -73,6 +75,11 @@ class Dashboard extends Controller
         //return response()->setContent($content)->send();
 
         echo $content;
+    }
+
+    private function getArticles()
+    {
+        return ['1','2','3'];
     }
 
     private function getTotals()
@@ -271,7 +278,7 @@ class Dashboard extends Controller
         foreach ($categories as $category) {
             switch ($category->type) {
                 case 'income':
-                    $amount = 0;
+                    $amount = 100;
 
                     // Revenues
                     foreach ($category->revenues as $revenue) {

@@ -16,6 +16,7 @@ return [
     'transactions'          => '交易 | 交易',
     'reports'               => '报告 | 报告',
     'settings'              => '设置 | 设置',
+    'testing'               => 'Test | Test',
     'categories'            => '分类 | 分类',
     'currencies'            => '币种 | 币种',
     'tax_rates'             => '税率 | 税率',
