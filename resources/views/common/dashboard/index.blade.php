@@ -100,36 +100,6 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('dashboard.incomes_by_category') }}</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    {!! $donut_incomes->render() !!}
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('dashboard.expenses_by_category') }}</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    {!! $donut_expenses->render() !!}
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="box box-success">
@@ -140,9 +110,9 @@
                     @if(!empty($articles))
                         <table class="table table-striped">
                             <tbody>
-                                @foreach($articles as $item)
+                                @foreach($articles as $article)
                                     <tr>
-                                        <td class="text-center">{{$item}}</td>
+                                        <td class="text-left"><a href={{url('common/article')}}>{{$article['title']}}</a> </td>
                                     </tr>
                                     @endforeach
                             </tbody>

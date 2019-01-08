@@ -12,7 +12,7 @@ use Route;
 
 class Model extends Eloquent
 {
-    use Filterable, SoftDeletes, Sortable;
+    use Filterable, Sortable;
 
     protected $dates = ['deleted_at'];
 

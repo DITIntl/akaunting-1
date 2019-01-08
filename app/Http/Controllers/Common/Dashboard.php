@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banking\Account;
+use App\Models\Common\ArticleContent;
+use App\Models\Common\Articles;
+use App\Models\Common\Company;
 use App\Models\Expense\Bill;
 use App\Models\Expense\BillPayment;
 use App\Models\Expense\Payment;
@@ -12,6 +15,7 @@ use App\Models\Income\InvoicePayment;
 use App\Models\Income\Revenue;
 use App\Models\Setting\Category;
 use App\Traits\Currencies;
+use Bkwld\Cloner\Stubs\Article;
 use Charts;
 use Date;
 
@@ -50,6 +54,10 @@ class Dashboard extends Controller
         $latest_expenses = $this->getLatestExpenses();
 
         $articles = $this->getArticles();
+        foreach ($articles as $key => $article)
+        {
+            $articles[$key]['content'] = $this->getArticleContent($article['contentId']);
+        }
 
         return view('common.dashboard.index', compact(
             'total_incomes',
@@ -79,7 +87,16 @@ class Dashboard extends Controller
 
     private function getArticles()
     {
-        return ['1','2','3'];
+        $articles = Articles::all();
+        $articles = $articles->toArray();
+        return $articles;
+    }
+
+    private function getArticleContent($articleId)
+    {
+        $query = ArticleContent::where('articles_id', $articleId)->get();
+        $content = $query->toArray();
+        return $content[0]['content'];
     }
 
     private function getTotals()

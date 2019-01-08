@@ -42,8 +42,7 @@ Route::group(['middleware' => 'language'], function () {
             });
 
             Route::group(['prefix' => 'common'], function () {
-                Route::get('area', 'Common\Area@index')->name('area');
-                Route::resource('area', 'Common\Area');
+                Route::get('article', 'Common\Article@index')->name('article');
                 Route::get('companies/{company}/set', 'Common\Companies@set')->name('companies.switch');
                 Route::get('companies/{company}/enable', 'Common\Companies@enable')->name('companies.enable');
                 Route::get('companies/{company}/disable', 'Common\Companies@disable')->name('companies.disable');
